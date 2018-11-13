@@ -14,8 +14,9 @@
         "php": ">=7.0.0",
         "ext-curl": "*",
         "ext-json": "*"
-    }
-    {
+    },
+    "minimum-stability": "stable",
+    "autoload": {
         "psr-4": {
             "SolutionInnovators\\": "/"
         }
