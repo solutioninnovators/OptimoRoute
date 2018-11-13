@@ -1,7 +1,7 @@
 {
     "name": "solutioninnovators/optimoroute",
     "description": "A PHP wrapper for OptimoRoute's API",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "license": "MIT",
     "authors": [
         {
