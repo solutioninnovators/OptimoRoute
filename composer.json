@@ -1,0 +1,17 @@
+{
+    "name": "solutioninnovators/optimoroute",
+    "description": "A PHP wrapper for OptimoRoute's API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike Spooner",
+            "email": "mspooner@solutioninnovators.com",
+            "homepage": "https://www.si.design/"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    }
+}
