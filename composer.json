@@ -15,4 +15,9 @@
         "ext-curl": "*",
         "ext-json": "*"
     }
+    {
+        "psr-4": {
+            "SolutionInnovators\\": "/"
+        }
+    }
 }
