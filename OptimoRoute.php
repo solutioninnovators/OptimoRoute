@@ -30,6 +30,8 @@ class OptimoRoute {
 	 * @throws \Exception
 	 */
 	public function createOrder(array $options) {
+		$options['operation'] = 'CREATE';
+
 		return $this->makeRequest('create_order', 'post', $options);
 	}
 
@@ -123,7 +125,10 @@ class OptimoRoute {
 	}
 
 
-	/*public function createOrders(array $orders) {
+	/*
+	 * @todo; Create an optional mechanism for grouping requests into a curl_multi request
+	 */
+	 /* public function createOrders(array $orders) {
 
 		$orderBatches = array_chunk($orders, $this->maxAsyncRequests);
 
@@ -161,9 +166,6 @@ class OptimoRoute {
 		}
 	}*/
 
-	/*private function makeMultiRequest() {
-
-	}*/
 
 	/**
 	 * Builds and executes a curl request to the OptimoRoute API and returns its result. Retries on failure.
@@ -225,7 +227,14 @@ class OptimoRoute {
 
 		// If optimo returned an error, convert it to an exception
 		if($rbody->success == false) {
-			throw new \Exception($rbody->message, (int)$rbody->code);
+			$message = '';
+			if(isset($rbody->message))
+				$message = $rbody->message;
+			else {
+				$message = 'OptimoRoute Error Code: ' . (int)$rbody->code;
+			}
+
+			throw new \Exception($message, (int)$rbody->code);
 		}
 
 		return $rbody;
@@ -249,6 +258,10 @@ class OptimoRoute {
 		if($method === 'post') {
 			$opts[CURLOPT_POST] = true;
 			$opts[CURLOPT_POSTFIELDS] = json_encode($data);
+		}
+		else {
+			$opts[CURLOPT_HTTPGET] = true;
+			$opts[CURLOPT_URL] .= '&' . http_build_query($data);
 		}
 
 		$request = $this->getSession();
