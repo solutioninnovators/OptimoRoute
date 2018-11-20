@@ -279,8 +279,10 @@ class OptimoRoute {
 	}
 
 	public function closeSession() {
-		curl_close($this->curlSession);
-		$this->curlSession = null;
+		if($this->curlSession !== null) {
+			curl_close($this->curlSession);
+			$this->curlSession = null;
+		}
 	}
 
 	/**
