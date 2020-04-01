@@ -9,13 +9,14 @@
 
 class OptimoRoute {
 
+	public $maxRetries = 1;
+	public $connectTimeout = 30;
+	public $timeout = 80;
+	public $retryDelay = 0.5; // Number of seconds to wait between retries
+	//public $maxAsyncRequests = 5;
+
 	private $apiKey;
 	private static $apiBaseUrl = 'https://api.optimoroute.com/v1/';
-	private $maxRetries = 1;
-	private $connectTimeout = 30;
-	private $timeout = 80;
-	private $retryDelay = 0.5; // Number of seconds to wait between retries
-	//private $maxAsyncRequests = 5;
 	private $curlSession;
 	private $reuseSession = false;
 
